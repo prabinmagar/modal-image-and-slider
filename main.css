@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500;600&display=swap');
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    font-family: 'Raleway', sans-serif;
+    position: relative;
+}
+
+img{
+    width: 100%;
+    display: block;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+}
+
+.img-container{
+    position: relative;
+}
+
+.content{
+    background: transparent;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease;
+    color: #fff;
+    opacity: 0;
+}
+
+.img-container:hover .content{
+    opacity: 1;
+    background: tomato;
+}
+
+.zoom-text{
+    width: 80px;
+    height: 80px;
+    background: burlywood;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: transform 0.2s linear;
+}
+
+.content h2{
+    padding: 15px 0;
+}
+
+.zoom-text:hover{
+    cursor: zoom-in;
+    transform: scale(1.1);
+}
+
+/******** js related *******/
+
+.image-view{
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    display: none;
+}
+
+.image-box{
+    width:70vw;
+    height: 80vh;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*background: tomato;*/
+    display: none;
+}
+
+#prev-btn, #next-btn{
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+#prev-btn{
+    border-right: 40px solid grey;
+    left: -50px;
+}
+
+#next-btn{
+    border-left: 40px solid grey;
+    right: -50px;
+}
+
+#next-btn:hover, #prev-btn:hover{
+    opacity: 0.6;
+}
+
+
+/****** media queries *******/
+
+@media(max-width: 992px){
+    .container{
+        grid-template-columns: 1fr;
+    }
+
+    .image-box{
+        height: 55vh;
+    }
+}
+
+@media(max-width: 678px){
+    .image-box{
+        height: 40vh;
+    }
+}
+
+@media(max-width: 400px){
+    .image-box{
+        height: 25vh;
+    }
+}
